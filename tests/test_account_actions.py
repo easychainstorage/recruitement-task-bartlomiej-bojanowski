@@ -53,4 +53,4 @@ class TestUserManager(unittest.TestCase):
             {"login": "kcabrera@example.net",
              "password": "gk2VM$qk@S"}, admin=False)
         self.assertIn('Patricia, 636162531: Andrew, 4; James, 13', result)
-        self.assertIn('Blake, 203818382: David, 4', result)
+        self.assertIn('Brandy, 686983157: Teresa, 4', result)

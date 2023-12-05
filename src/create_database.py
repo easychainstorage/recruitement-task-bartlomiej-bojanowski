@@ -193,3 +193,4 @@ def create_database(args):
         columns=["children"]), "Users")
 
     db_manager.close_connection()
+    return 'Database created.'

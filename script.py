@@ -38,7 +38,8 @@ def main():
 
     parser_oldest_accounts = subparsers.add_parser(
         "print-oldest-account", parents=[parent_parser],
-        help="Print information about the account."
+        help="Print information about the account "
+             "with the longest existence."
     )
     parser_oldest_accounts.set_defaults(
         func=account_actions.print_oldest_account

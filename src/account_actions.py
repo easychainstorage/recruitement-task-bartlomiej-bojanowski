@@ -107,6 +107,12 @@ class AccountActions:
         """
         if not self.user_manager.validate_credentials(args, admin):
             return "Invalid Login"
+        telephone_prompt = f"""SELECT telephone_number FROM USERS
+                               WHERE USERS.email='{args['login']}'
+                               OR USERS.telephone_number
+                               ='{args['login']}'"""
+        telephone_result = self.user_manager.execute_query(
+            telephone_prompt)['telephone_number'][0]
         age_children_prompt = f"""SELECT CHILDREN.age FROM CHILDREN
                                   LEFT JOIN USERS ON
                                   USERS.id_user = CHILDREN.index_parent
@@ -173,4 +179,6 @@ class AccountActions:
                 console_output.append(
                     f"{rows['firstname']}, {rows['telephone_number']}: {output}"
                 )
+        console_output = [value for value in console_output
+                          if telephone_result not in value]
         return "\n".join(list(dict.fromkeys(console_output)))
